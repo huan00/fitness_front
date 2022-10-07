@@ -34,11 +34,17 @@ export default {
 }
 .wrapper {
   width: 480px;
+  height: 844px;
   margin: 0 auto;
+  padding: 0 20px;
+  background-color: white;
 }
 
+body{
+  background-color: #2c3e50;
+}
 nav {
-  // padding: 30px;
+  padding: 30px 0 20px 0;
 
   a {
     font-weight: bold;

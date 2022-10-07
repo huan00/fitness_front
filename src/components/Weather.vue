@@ -1,8 +1,15 @@
 <template>
   <div class="weather-page">
-    <img class="weather-img" :src="`https://www.weatherbit.io/static/img/icons/${weather.weather?.icon ? weather.weather.icon : 'r01d' }.png`" :alt=weather.weather?.description />
-    <p class="weather">{{weather.weather?.description}}</p>
-    <p>{{convertTemp(weather.temp)}}°</p>
+    <div class="weather-detail" v-if="weather.temp">
+
+      <img class="weather-img" :src="`https://www.weatherbit.io/static/img/icons/${weather.weather?.icon ? weather.weather.icon : 'r01d' }.png`" :alt=weather.weather?.description />
+      <p class="weather">{{weather.weather?.description}},</p>
+      <p>{{convertTemp(weather.temp)}}°</p>
+    </div>
+    <div v-else></div>
+    <div class="weather-search">
+      <fa icon="fa-solid fa-magnifying-glass" />
+    </div>
 
   </div>
 </template>
@@ -15,7 +22,6 @@ export default {
     return {
       weather: {},
       locCoordinate: {lat: '', lon: ''},
-      runwatch: ''
     }
   },
   mounted(){
@@ -32,19 +38,12 @@ export default {
   },
   methods:{
     async getCurWeather(){
-      // let config = {
-      //   params: {lon: -73.786916, lat: 40.769385},
-      //   headers: {
-      //       'X-RapidAPI-Key': '93ca3a18dbmshe726aeae2cb1c33p1ec27ajsn9fc9e9dc0389',
-      //       'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com'
-      //   }
-      // }
+
       const res = await axios.get(`https://weatherbit-v1-mashape.p.rapidapi.com/current`, {params:{lon: this.locCoordinate.lon, lat: this.locCoordinate.lat}, headers: {
             'X-RapidAPI-Key': '93ca3a18dbmshe726aeae2cb1c33p1ec27ajsn9fc9e9dc0389',
             'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com'
         }})
       this.weather = res.data.data[0]
-      console.log(this.weather)
     },
     getLocation(){
       if(navigator.geolocation){
@@ -71,6 +70,11 @@ export default {
   margin: 0 3px;
 }
 .weather-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.weather-detail{
   display: flex;
   justify-content: center;
   align-items: center;
