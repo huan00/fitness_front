@@ -7,8 +7,20 @@
       <p>{{convertTemp(weather.temp)}}°</p>
     </div>
     <div v-else></div>
-    <div class="weather-search">
-      <fa icon="fa-solid fa-magnifying-glass" />
+    <div class="weather-status">
+      <div class="weather-search">
+        <input />
+        <fa icon="fa-solid fa-magnifying-glass" />
+      </div>
+      <template v-if='$store.state.isAuthenticated'>
+        <fa icon="fa-solid fa-circle-user" />
+
+      </template>
+      <template v-else>
+        <router-link to='login'>
+          <fa icon="fa-solid fa-right-to-bracket" />
+        </router-link>
+      </template>
     </div>
 
   </div>
@@ -89,5 +101,9 @@ export default {
 .weather-img {
   width: 20px;
 
+}
+.weather-status{
+  display: flex;
+  align-items: center;
 }
 </style>

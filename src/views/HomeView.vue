@@ -7,15 +7,17 @@
       <img :src="exerciseList[0]?.gifUrl" />
     </div>
     
-    <WorkoutHistory
-    v-for = "exercise in exerciseList.slice(0, 10)" 
-    v-bind:key = "exercise.id" 
-    v-bind:exercise = "exercise"
-    />
+    <div class="workoutHistory-wrapper">
+      <WorkoutHistory
+      v-for = "exercise in exerciseList.slice(0, 10)" 
+      v-bind:key = "exercise.id" 
+      v-bind:exercise = "exercise"
+      />
+    </div>
     
       <div class="workoutBtn">
-        <button class="workoutBtn-cal">Calculator</button>
-        <router-link to="recordworkout"><button class="workoutBtn-record">Record</button></router-link>
+        <button class="workoutBtn-sec">Calculator</button>
+        <router-link to="recordworkout"><button class="workoutBtn-primary">Record</button></router-link>
       </div>
 
   </div>
@@ -74,7 +76,9 @@ export default {
     
     text-align: left;
   }
-
-
+  .workoutHistory-wrapper {
+    height: 300px;
+    overflow: scroll;
+  }
 
 </style>

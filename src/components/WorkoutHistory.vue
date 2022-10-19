@@ -24,8 +24,6 @@ export default {
     display: flex;
     flex-direction: column;
   }
-
-
   .maxRep {
     text-align: left;
   }
@@ -37,7 +35,7 @@ export default {
     display: flex;
     justify-content: space-around;
   }
-  .workoutBtn-cal {
+  .workoutBtn-sec {
     height: 50px;
     width: 150px;
     
@@ -46,13 +44,20 @@ export default {
     padding: 0 20px;
   }
 
-.workoutBtn-record {
+.workoutBtn-primary {
     height: 50px;
     width: 200px;
 
     border-radius: 30px;
     border: 1px solid black;
     background-color: black;
-    color: white
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .workoutBtn-primary:hover {
+    background-color: green;
+    border: none;
   }
 </style>
